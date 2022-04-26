@@ -9,15 +9,15 @@ server {
         client_max_body_size 200M;
 
  location / {
-       try_files $uri $uri/ /index.php$is_args$args;
+       try_files \$uri \$uri/ /index.php\$is_args$args;
    }
    
-   location ~ \.php$ {
-          fastcgi_split_path_info ^(.+\.php)(/.+)$;
+   location ~ \.php\$ {
+          fastcgi_split_path_info ^(.+\.php)(/.+)\$;
           fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
           fastcgi_index index.php;
           include fastcgi_params;
-          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+          fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
           fastcgi_intercept_errors off;
           fastcgi_buffer_size 16k;
           fastcgi_buffers 4 16k;
