@@ -52,7 +52,6 @@ pushd /var/www/html
 git clone -b $BRNACHNAME $GITURL
 sudo chmod -R 755 /var/www/html/
 sudo chown -R $USER:$USER /var/www/html/$PROJECTNAME
-sudo chmod -R 777 /var/www/html/$PROJECTNAME
 cd /var/www/html/$PROJECTNAME
 cd storage/ && mkdir -p framework/{sessions,views,cache} && chmod -R 775 framework && cd ..
 composer install
@@ -71,8 +70,8 @@ pushd /var/www/html/$PROJECTNAME
 php artisan migrate
 php artisan db:seed
 php artisan optimize:clear
-sudo chmod -R 777 storage
-sudo chmod -R 777 bootstrap
+sudo chown -R www-data.www-data storage
+sudo chown -R www-data.www-data bootstrap
 echo
 echo "clone and configuration completed..."
 sleep 1
