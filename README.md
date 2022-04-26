@@ -4,12 +4,10 @@ AutoDep to Any VM Servers
 Miscellaneous scripts to enhance bash (prompt, adding directories to variables, ...)
 
 Table of Contents
+* [Installation](#installation)
 * [Scripts](#scripts)
   * [push.bashrc](#pushbashrc)
-  * [ssh.bashrc](#sshbashrc)
-  * [munge.bashrc](#mungebashrc)
-  * [cyg-wrapper.sh](#cyg-wrappersh)
-* [Installation](#installation)
+
 
 ## Scripts
 
