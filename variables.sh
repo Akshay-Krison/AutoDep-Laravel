@@ -6,6 +6,16 @@ yellow='\033[1;33m';
 red='\033[1;31m';
 # Clear the color after that
 clear='\033[0m';
+#function declerations 
+reading_values () {
+    read -p "$1 : " $2;
+}
+repeat_reading () {
+    echo -e "$2$1$3"
+}
+confirm_variables () {
+    echo -e "$1 : $2$3$4"
+}
 #looping the data insert
 for (( i=0; i != 1 ;  ))
 do
@@ -13,46 +23,50 @@ echo
 if [ $SET_STATUS == 0 ]
 then
 echo 
-read -p "Insert the Project Name (same as the git repo name) : " PROJECTNAME;
+# reading_values "Insert the Project Name (same as the git repo name) " PROJECTNAME;
+reading_values "Insert the Project Name (same as the git repo name)" PROJECTNAME;
 echo
-read -p "Enter the domain you want to deploy : " YOURDOMAIN;
+reading_values "Enter the domain you want to deploy " YOURDOMAIN;
 echo
-read -p "Insert the DB Name : " DATABASENAME;
+reading_values "Insert the DB Name " DATABASENAME;
 echo
-read -p "Insert the DB Password : " DATABASEPASS;
+reading_values "Insert the DB Password " DATABASEPASS;
 echo 
-read -p "Insert the GIT_URL want to clone : " GITURL;
+reading_values "Insert the GIT_URL want to clone " GITURL;
 echo
-read -p "Define the Branch you want to clone : " BRNACHNAME;
+reading_values "Define the Branch you want to clone " BRNACHNAME;
 echo
 else
-echo -e "${red}Insert the Project Name Correctly (same as the git repo name)... ${clear}"
-read -p "Project Name : " PROJECTNAME;
 echo
-echo -e "${red}Enter the domain you want to deploy Correctly ${clear}"
-read -p "Domain Name : " YOURDOMAIN;
+repeat_reading "Insert the Project Name Correctly (same as the git repo name)..." ${red} ${clear}
+reading_values "Project Name " PROJECTNAME;
 echo
-echo -e "${red}Insert the DB Name Correctly.. ${clear}"
-read -p "DB Name : " DATABASENAME;
+repeat_reading "Enter the domain you want to deploy Correctly..." ${red} ${clear}
+reading_values "Domain Name " YOURDOMAIN;
 echo
-echo -e "${red}Insert the DB Password Correctly.. ${clear}"
-read -p "DB Password : " DATABASEPASS;
+repeat_reading "Insert the DB Name Correctly..." ${red} ${clear}
+reading_values "DB Name " DATABASENAME;
 echo
-echo -e "${red}Insert the Git URL want to clone Correctly.. ${clear}"
-read -p "Git URL : " GITURL;
+repeat_reading "Insert the DB Password Correctly..." ${red} ${clear}
+reading_values "DB Password " DATABASEPASS;
 echo
-echo -e "${red}Define the Branch you want to clone Correctly... ${clear}"
-read -p "Branch Name :" BRNACHNAME;
+repeat_reading "Insert the Git URL want to clone Correctly..." ${red} ${clear}
+reading_values "Git URL " GITURL;
+echo
+repeat_reading "Define the Branch you want to clone Correctly..." ${red} ${clear}
+reading_values "Branch Name " BRNACHNAME;
 echo
 fi
 echo "Confirm the below Values are enterd correct"
 echo "----------------------------------------------"
-echo -e "Project Name       :${yellow} $PROJECTNAME ${clear}"
-echo -e "Database Name      :${yellow} $DATABASENAME ${clear}"
-echo -e "Database Password  :${yellow} $DATABASEPASS ${clear}"
-echo -e "Domain Name        :${yellow} $YOURDOMAIN ${clear}"
-echo -e "Git URL            :${yellow} $GITURL ${clear}"
-echo -e "Branch Name        :${yellow} $BRNACHNAME ${clear}"
+#declear a array of Varaibles Name
+array1=(Project_Name Database_Name Database_Password Domain_Name Git_URL Branch_Name);
+array2=($PROJECTNAME $DATABASENAME $DATABASEPASS $YOURDOMAIN $GITURL $BRNACHNAME);
+#do the looping of the function with arguments
+for (( i=0; i <6; i++ ))
+    do
+    confirm_variables ${array1[i]} ${yellow}${array2[i]}${clear}
+done
 echo 
 echo "Enter Yes to Confirm else enter No to Re-enter the Details..."
 echo
@@ -65,12 +79,6 @@ do
         Yes)
             echo
             echo "Configuration Successfully added..."
-            export PROJECT_NAME="$PROJECTNAME";
-            export DATABAS_ENAME="$DATABASENAME";
-            export DATABASE_PASS="$DATABASEPASS";
-            export YOUR_DOMAIN="$YOURDOMAIN";
-            export GIT_URL="$GITURL";
-            export BRNACH_NAME="$BRNACHNAME";
             i=1;
             break
             ;;
