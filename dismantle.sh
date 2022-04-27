@@ -1,6 +1,4 @@
 #!/bin/bash
-sudo chmod +x animation.sh
-source animation.sh
 cd /var/www/html && ls
 read -p "Enter the project folder name Listed above : " $FOLDERNAME
 echo

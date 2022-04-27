@@ -36,6 +36,8 @@ reading_values "Insert the GIT_URL want to clone " GITURL;
 echo
 reading_values "Define the Branch you want to clone " BRNACHNAME;
 echo
+reading_values "Define the PHP Version you want to install " VERSION;
+echo
 else
 echo
 repeat_reading "Insert the Project Name Correctly (same as the git repo name)..." ${red} ${clear}
@@ -55,6 +57,9 @@ reading_values "Git URL " GITURL;
 echo
 repeat_reading "Define the Branch you want to clone Correctly..." ${red} ${clear}
 reading_values "Branch Name " BRNACHNAME;
+echo
+repeat_reading "Define the Version of php you want to install Correctly..." ${red} ${clear}
+reading_values "Branch Name " VERSION;
 echo
 fi
 echo "Confirm the below Values are enterd correct"

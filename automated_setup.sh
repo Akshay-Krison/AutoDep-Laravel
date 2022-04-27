@@ -18,9 +18,9 @@ sleep 1
 echo
 echo "Installing PHP...."
 echo
-sudo apt install php-fpm php-mysql -y
+sudo apt install php$VERSION-fpm php$VERSION-mysql -y
 sudo apt-get install composer -y
-sudo apt install php7.4-cli php7.4-fpm php7.4-json php7.4-pdo php7.4-mysql php7.4-zip php7.4-gd  php7.4-mbstring php7.4-curl php7.4-xml php7.4-bcmath php7.4-json -y
+sudo apt install php$VERSION-cli php$VERSION-fpm php$VERSION-json php$VERSION-pdo php$VERSION-mysql php$VERSION-zip php$VERSION-gd  php$VERSION-mbstring php$VERSION-curl php$VERSION-xml php$VERSION-bcmath php$VERSION-json -y
 echo
 echo "PHP installation Completed..."
 echo
@@ -78,7 +78,7 @@ sleep 1
 
 # Nginx Configurations
 cd
-cd autodep
+cd AutoDep
 sudo chmod +x nginx.sh
 source nginx.sh
 sudo nginx -test
