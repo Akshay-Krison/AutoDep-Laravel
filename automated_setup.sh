@@ -78,7 +78,7 @@ sleep 1
 
 # Nginx Configurations
 cd
-cd AutoDep
+cd AutoDep-Laravel
 sudo chmod +x nginx.sh
 source nginx.sh
 sudo nginx -test
