@@ -36,7 +36,7 @@ reading_values "Insert the GIT_URL want to clone " GITURL;
 echo
 reading_values "Define the Branch you want to clone " BRNACHNAME;
 echo
-reading_values "Define the PHP Version you want to install " VERSION;
+reading_values "Define the PHP Version you want to install (7.0,7.2,7.3,7.4,8 etc...)" VERSION;
 echo
 else
 echo
@@ -59,16 +59,16 @@ repeat_reading "Define the Branch you want to clone Correctly..." ${red} ${clear
 reading_values "Branch Name " BRNACHNAME;
 echo
 repeat_reading "Define the Version of php you want to install Correctly..." ${red} ${clear}
-reading_values "Branch Name " VERSION;
+reading_values "Version Number (7.0,7.2,7.3,7.4,8 etc...) " VERSION;
 echo
 fi
 echo "Confirm the below Values are enterd correct"
 echo "----------------------------------------------"
 #declear a array of Varaibles Name
-array1=(Project_Name Database_Name Database_Password Domain_Name Git_URL Branch_Name);
-array2=($PROJECTNAME $DATABASENAME $DATABASEPASS $YOURDOMAIN $GITURL $BRNACHNAME);
+array1=(Project_Name Database_Name Database_Password Domain_Name Git_URL Branch_Name Version_Number);
+array2=($PROJECTNAME $DATABASENAME $DATABASEPASS $YOURDOMAIN $GITURL $BRNACHNAME $VERSION);
 #do the looping of the function with arguments
-for (( i=0; i <6; i++ ))
+for (( i=0; i <7; i++ ))
     do
     confirm_variables ${array1[i]} ${yellow}${array2[i]}${clear}
 done
