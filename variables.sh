@@ -6,16 +6,40 @@ yellow='\033[1;33m';
 red='\033[1;31m';
 # Clear the color after that
 clear='\033[0m';
-#function declerations 
+###Function declerations###
+#Reading the Variables
 reading_values () {
     read -p "$1 : " $2;
 }
+#Renter the Values 
 repeat_reading () {
     echo -e "$2$1$3"
 }
+#Variables Confirmations
 confirm_variables () {
     echo -e "$1 : $2$3$4"
 }
+
+#Composer Version Define
+composer_version () {
+PS3="Choose 1 for Version 1^ Choose 2 for Version 2^: "
+select STATUS1 in v1 v2
+do
+    case $STATUS1 in 
+        v1)
+            echo
+            COMPOSER_VERSION=1
+            break
+            ;;
+        v2)
+            COMPOSER_VERSION=2
+            break;
+            ;;
+    esac
+done
+}
+
+
 #looping the data insert
 for (( i=0; i != 1 ;  ))
 do
@@ -38,6 +62,7 @@ reading_values "Define the Branch you want to clone " BRNACHNAME;
 echo
 reading_values "Define the PHP Version you want to install (7.0,7.2,7.3,7.4,8 etc...)" VERSION;
 echo
+composer_version "Choose The Composer version you need to Install.."
 else
 echo
 repeat_reading "Insert the Project Name Correctly (same as the git repo name)..." ${red} ${clear}
@@ -59,16 +84,16 @@ repeat_reading "Define the Branch you want to clone Correctly..." ${red} ${clear
 reading_values "Branch Name " BRNACHNAME;
 echo
 repeat_reading "Define the Version of php you want to install Correctly..." ${red} ${clear}
-reading_values "Version Number (7.0,7.2,7.3,7.4,8 etc...) " VERSION;
+reading_values "PHP Version Number (7.0,7.2,7.3,7.4,8 etc...) " VERSION;
 echo
 fi
 echo "Confirm the below Values are enterd correct"
 echo "----------------------------------------------"
 #declear a array of Varaibles Name
-array1=(Project_Name Database_Name Database_Password Domain_Name Git_URL Branch_Name Version_Number);
-array2=($PROJECTNAME $DATABASENAME $DATABASEPASS $YOURDOMAIN $GITURL $BRNACHNAME $VERSION);
+array1=(Project_Name Database_Name Database_Password Domain_Name Git_URL Branch_Name PHP_Version Composer_Version);
+array2=($PROJECTNAME $DATABASENAME $DATABASEPASS $YOURDOMAIN $GITURL $BRNACHNAME $VERSION $COMPOSER_VERSION);
 #do the looping of the function with arguments
-for (( i=0; i <7; i++ ))
+for (( i=0; i <8; i++ ))
     do
     confirm_variables ${array1[i]} ${yellow}${array2[i]}${clear}
 done

@@ -19,7 +19,14 @@ echo
 echo "Installing PHP...."
 echo
 sudo apt install php$VERSION-fpm php$VERSION-mysql -y
+sudo apt install curl unzip -y
+if [ $COMPOSER_VERSION == 1 ]
+then
 sudo apt-get install composer -y
+else
+curl -sS https://getcomposer.org/installer -o composer-setup.php
+sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+if
 sudo apt install php$VERSION-cli php$VERSION-fpm php$VERSION-json php$VERSION-pdo php$VERSION-mysql php$VERSION-zip php$VERSION-gd  php$VERSION-mbstring php$VERSION-curl php$VERSION-xml php$VERSION-bcmath php$VERSION-json -y
 echo
 echo "PHP installation Completed..."
