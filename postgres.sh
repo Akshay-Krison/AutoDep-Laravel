@@ -4,8 +4,10 @@ for (( i=0; i !=1 ; ))
 do
 echo "MYSQL Installation Process Started...."
 sudo apt-get update -y &> /dev/null
-echo "Installing mysql..." 
-sudo apt-get install mysql-server -y
+echo "Installing Postgres..." 
+sudo apt install postgresql postgresql-contrib -y
+sudo systemctl start postgresql.service
+sudo -i -u postgres
 RESULT=$?
 if [ $RESULT = 0 ]; then
 echo "Mysql Installed Successfully....."
